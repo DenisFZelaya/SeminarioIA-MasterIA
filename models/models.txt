@@ -1,0 +1,1 @@
+The models folder will contain the models returned by train.py and saved in pickle format.

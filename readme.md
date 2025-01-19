@@ -1,0 +1,1 @@
+README.md instead will be our “instruction manual” — here we will insert the necessary documentation to communicate the behavior of our software.
