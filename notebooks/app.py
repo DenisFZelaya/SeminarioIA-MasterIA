@@ -62,6 +62,8 @@ def get_recommendations_from_multiple_movies(movie_names_list, n_recommendations
     
     # Obtener vecinos para cada película encontrada
     for idx in found_movie_indices:
+
+        ## 
         distances, indices = knn_model.kneighbors(csr_data[idx], n_neighbors=n_recommendations+1)
         
         # Convertir a lista y omitir la primera (que es la película misma)
