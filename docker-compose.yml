@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+
+  # BASE DE DATOS
+  pg_db_movies:
+    container_name: 'pg_db_movies'
+    restart: always
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=strong-password
+      - POSTGRES_USER=dfz
+      - POSTGRES_DB=db_movies
+    networks:
+      - knn_service_net
+    volumes:
+      - ./api/config/database/pg:/docker-entrypoint-initdb.d
+
+  # PG ADMIN
+  pgadmin_movies:
+    image: dpage/pgadmin4
+    container_name: 'pgadmin_movies'
+    restart: always
+    ports: 
+      - 8081:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: strong-password
+    volumes: 
+      - ./api/config/pg/servers.json:/pgadmin4/servers.json
+    networks:
+      - knn_service_net
+
+networks:
+  knn_service_net:
+    driver: bridge

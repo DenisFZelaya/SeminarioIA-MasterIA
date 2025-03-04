@@ -1,0 +1,5 @@
+### Petición POST para obtener recomendaciones de películas
+
+
+GET http://127.0.0.1:5000/search?q=The+Notebook
+Content-Type: application/json

@@ -1,0 +1,30 @@
+{
+    "Servers": {
+      "1": {
+        "Name": "DB_MOVIES_RECOMENDATION",
+        "Group": "Servers",
+        "Host": "pg_db_movies",
+        "Port": 5432,
+        "MaintenanceDB": "db_movies",
+        "Username": "dfz",
+        "SSLMode": "prefer",
+        "PassFile": "",
+        "SSLCompression": 0,
+        "Timeout": 10,
+        "UseSSHTunnel": 0,
+        "TunnelPort": 22,
+        "TunnelAuthentication": 0,
+        "TunnelPrivateKey": "",
+        "TunnelUsername": "",
+        "TunnelPassword": "",
+        "SSLKeyFile": "",
+        "SSLCertFile": "",
+        "SSLRootCertFile": "",
+        "SavePassword": 0,
+        "DBRestriction": "db_movies",
+        "ConnectionLimit": 1,
+        "IdleSessionTimeout": 0
+      }
+    }
+  }
+  
