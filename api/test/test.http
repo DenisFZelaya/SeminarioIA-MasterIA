@@ -1,0 +1,40 @@
+
+### Variables globales
+@baseUrl = http://localhost:5000/api
+@userId = auth0|123456789
+
+### Obtener favoritos de un usuario
+GET {{baseUrl}}/favorites/{{userId}}
+Accept: application/json
+
+### Alternar película como favorito (agregar o quitar)
+# Si la película ya está en favoritos, la quitará
+# Si no está en favoritos, la agregará
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "movieId": 550
+}
+
+### Agregar otra película como favorita
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "movieId": 299536
+}
+
+### Obtener favoritos de otro usuario
+GET {{baseUrl}}/favorites/auth0|123456789
+Accept: application/json
+
+### Probar con datos inválidos (falta movieId)
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}"
+}

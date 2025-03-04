@@ -33,6 +33,27 @@ services:
     networks:
       - knn_service_net
 
+# API FLASK
+  movies_api:
+    container_name: 'movies_api'
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - pg_db_movies
+    environment:
+      - DB_HOST=pg_db_movies
+      - DB_PORT=5432
+      - DB_USER=dfz
+      - DB_PASSWORD=strong-password
+      - DB_NAME=db_movies
+    networks:
+      - knn_service_net
+    volumes:
+      - ./api:/app
+
 networks:
   knn_service_net:
     driver: bridge
