@@ -12,3 +12,7 @@ movieId,imdbId,tmdbId
 movieId,title,genres
 userId,movieId,rating,timestamp
 userId,movieId,tag,timestamp
+
+docker-compose down
+docker-compose build --no-cache movies_api
+docker-compose up -d
