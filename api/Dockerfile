@@ -1,6 +1,4 @@
-FROM continuumio/miniconda3:4.9.2
-
-RUN conda install -y python=3.8 scipy=1.7.3 numpy=1.21.6 pandas=1.3.5 scikit-learn=1.0.2
+FROM python:3.9-slim
 
 WORKDIR /app
 
