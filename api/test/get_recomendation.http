@@ -3,6 +3,6 @@ POST http://127.0.0.1:5000/recommendations
 Content-Type: application/json
 
 {
-  "movies": ["Wag the Dog"],
+  "movies": ["Comedian"],
   "n_recommendations": 15
 }

@@ -10,7 +10,7 @@ export default function MovieCard({
         <div
             key={movie.movieId}
             className={`relative group cursor-pointer transition-all duration-300 transform hover:-translate-y-2 ${favorites.includes(parseInt(movie.movieId)) ? 'ring-2 ring-cyan-400 ring-offset-2 ring-offset-gray-900' : ''}`}
-            onClick={() => handleMovieClick(parseInt(movie.movieId))}
+            onClick={() => handleMovieClick(parseInt(movie.movieId), movie)}
         >
             <div className="relative bg-gray-800 rounded-lg overflow-hidden border border-cyan-500/30 shadow-lg hover:shadow-cyan-500/20 hover:border-cyan-500/50">
                 {/* Indicador de favorito */}

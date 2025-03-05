@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import MOVIES from './../../data/movies.json'
 import LINKS from './../../data/links.json'
 import MovieCard from "../../components/MovieCard";
+import FavoriteService from "../../service/favoriteService";
 
 const MyFavorites = () => {
     // Estado para los datos de películas
@@ -25,6 +26,41 @@ const MyFavorites = () => {
     // Obtener datos del usuario de Auth0
     const { user } = useAuth0();
 
+    useEffect(() => {
+        console.log("favorites: ", favorites)
+    }, [favorites])
+
+    useEffect(() => {
+        fetchFavorites()
+    }, [])
+
+
+    const fetchFavorites = async () => {
+        if (user) {
+            FavoriteService.getFavorites(user.sub).then((result) => {
+
+              
+
+                setFavorites((prevFavorites) => {
+                    // Fusionar favoritos previos con los nuevos, evitando duplicados
+                    const mergedFavorites = [...prevFavorites];
+
+                    result?.favorites.forEach((newFav) => {
+                        if (!mergedFavorites.some(fav => fav === newFav)) {
+                            mergedFavorites.push(newFav);
+                        }
+                    });
+
+                    var movieIds = mergedFavorites.map(movie => movie.movieId);
+
+                    movieIds = movieIds.filter(movie => movie !== undefined);
+
+                    return movieIds;
+                });
+            });
+        }
+
+    };
     const handleSaveFavorite = (newMovieId) => {
         if (!favorites.includes(newMovieId)) {
             setFavorites([...favorites, newMovieId]);
@@ -153,27 +189,74 @@ const MyFavorites = () => {
     }, [filteredMovies, currentPage]);
 
     // Manejar clic en película
-    const handleMovieClick = async (movieId) => {
+    const handleMovieClick = async (movieId, movie = {}) => {
         try {
-            // En un entorno real, aquí harías una llamada a tu API
-            // const response = await fetch('/api/favorites', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify({ userId: user.sub, movieId })
-            // });
-
             // Actualizar estado local de favoritos
+
+            saveFavoriteMovie(movie, user.sub)
+
             if (favorites.includes(movieId)) {
                 setFavorites(favorites.filter(id => id !== movieId));
             } else {
                 setFavorites([...favorites, movieId]);
             }
 
+
+            console.log("SELECTED: ", movie)
             console.log(`Guardando película ${movieId} para usuario ${user.sub}`);
+
+
         } catch (error) {
             console.error("Error updating favorites:", error);
         }
     };
+
+    async function saveFavoriteMovie(movieData, userId) {
+        // URL del endpoint para guardar favoritos
+        const url = `http://localhost:5000/api/favorites`;
+
+        // Verificar que los datos obligatorios estén presentes
+        if (!movieData.movieId) {
+            throw new Error('userId y movieId son campos obligatorios');
+        }
+
+        // Crear el objeto con los datos a enviar
+        const favoriteData = {
+            userId: userId,
+            movieId: movieData.movieId,
+            genres: movieData.genres || null,
+            imdbId: movieData.imdbId || null,
+            posterUrl: movieData.posterUrl || null,
+            title: movieData.title || null,
+            tmdbId: movieData.tmdbId || null
+        };
+
+        try {
+            // Realizar la petición POST al servidor
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(favoriteData)
+            });
+
+            // Verificar si la respuesta es exitosa
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al guardar la película como favorita');
+            }
+
+            // Devolver los datos de la respuesta
+            const result = await response.json();
+            console.log(`Película ${result.action === 'added' ? 'agregada a' : 'eliminada de'} favoritos:`, result);
+            return result;
+
+        } catch (error) {
+            console.error('Error al guardar película favorita:', error);
+            throw error;
+        }
+    }
 
     // Cambiar de página
     const handlePageChange = (newPage) => {

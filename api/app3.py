@@ -113,6 +113,7 @@ def get_recommendations_from_multiple_movies(movie_names_list, n_recommendations
                 else:
                     title = movies_df[movies_df['movieId'] == movie_id].iloc[0]['title']
                     candidates[movie_id] = {
+                        'movieId': int(movie_id),  # Se agrega movieId
                         'title': title,
                         'count': 1,
                         'total_distance': movie_distances[i]
@@ -127,6 +128,7 @@ def get_recommendations_from_multiple_movies(movie_names_list, n_recommendations
         combined_score = (0.6 * freq_score) + (0.4 * distance_score)
 
         recommendations.append({
+            'movieId': data['movieId'],  # Se incluye movieId en la salida
             'title': data['title'],
             'score': float(combined_score),
             'frequency': int(data['count']),
@@ -154,7 +156,7 @@ def home():
             "/api/favorites/<user_id>": "GET - Obtener películas favoritas de un usuario",
             "/api/favorites": "POST - Agregar o quitar una película de favoritos",
             "/recommendations": "POST - Obtener recomendaciones basadas en múltiples películas",
-            "/search": "GET - Buscar películas por nombre"
+            "/search": "GET - Buscar películas por nombre PRUEBA"
         }
     })
 
@@ -176,8 +178,23 @@ def get_user_favorites(user_id):
             return jsonify({"error": "Error de conexión a la base de datos"}), 500
 
         cursor = conn.cursor()
-        cursor.execute("SELECT movieId FROM user_favorite_movie WHERE userId = %s", (user_id,))
-        favorites = [row[0] for row in cursor.fetchall()]
+        # Modificado para obtener todos los datos de las películas favoritas
+        cursor.execute("""
+            SELECT movieId, genres, imdbId, posterUrl, title, tmdbId
+            FROM user_favorite_movie
+            WHERE userId = %s
+        """, (user_id,))
+
+        favorites = []
+        for row in cursor.fetchall():
+            favorites.append({
+                "movieId": row[0],
+                "genres": row[1],
+                "imdbId": row[2],
+                "posterUrl": row[3],
+                "title": row[4],
+                "tmdbId": row[5]
+            })
 
         cursor.close()
         conn.close()
@@ -202,7 +219,12 @@ def toggle_favorite():
     Request body:
     {
         "userId": "string",
-        "movieId": integer
+        "movieId": integer,
+        "genres": "string",
+        "imdbId": integer,
+        "posterUrl": "string",
+        "title": "string",
+        "tmdbId": integer
     }
 
     Returns:
@@ -216,6 +238,13 @@ def toggle_favorite():
 
         user_id = data['userId']
         movie_id = data['movieId']
+
+        # Obtener datos adicionales de la película
+        genres = data.get('genres')
+        imdb_id = data.get('imdbId')
+        poster_url = data.get('posterUrl')
+        title = data.get('title')
+        tmdb_id = data.get('tmdbId')
 
         conn = get_db_connection()
         if not conn:
@@ -238,10 +267,14 @@ def toggle_favorite():
             )
             action = "removed"
         else:
-            # Si no existe, crear
+            # Si no existe, crear con todos los datos de la película
             cursor.execute(
-                "INSERT INTO user_favorite_movie (userId, movieId) VALUES (%s, %s)",
-                (user_id, movie_id)
+                """
+                INSERT INTO user_favorite_movie
+                (userId, movieId, genres, imdbId, posterUrl, title, tmdbId)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """,
+                (user_id, movie_id, genres, imdb_id, poster_url, title, tmdb_id)
             )
             action = "added"
 
