@@ -30,7 +30,10 @@ export default function MovieCard({
           {/* Imagen de la película */}
           <div className="relative aspect-[2/3] bg-gray-900">
             <img
-              src={movie.posterUrl}
+              src={`${
+                movie?.posterUrl ??
+                "https://www.imdb.com/es-es/title/tt${movie?.imdbId}/"
+              } `}
               alt={movie.title}
               className="w-full h-full object-cover"
             />

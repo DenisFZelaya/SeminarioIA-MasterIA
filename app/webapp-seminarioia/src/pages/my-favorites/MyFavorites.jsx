@@ -85,7 +85,7 @@ const MyFavorites = () => {
                         ...movie,
                         imdbId: link ? link.imdbId : '',
                         tmdbId: link ? link.tmdbId : '',
-                        posterUrl: `https://placehold.co/300x450/121218/00f0ff?text=${encodeURIComponent(movie.title.split(' (')[0])}`
+                        posterUrl: movie?.posterUrl ?? `https://placehold.co/300x450/121218/00f0ff?text=${encodeURIComponent(movie.title.split(' (')[0])}`
                     };
                 });
 
