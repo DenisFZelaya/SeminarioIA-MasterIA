@@ -102,21 +102,6 @@ const MyFavorites = () => {
                 setIsLoading(false);
             }
         };
-
-        const loadUserFavorites = () => {
-            try {
-                // En un entorno real, aquí harías una llamada a tu API para obtener los favoritos del usuario
-                // const response = await fetch(`/api/favorites?userId=${user.sub}`);
-                // const data = await response.json();
-                // setFavorites(data.map(fav => fav.movieId));
-
-                // Por ahora, simulamos algunos favoritos
-                //setFavorites([1, 6]);
-            } catch (error) {
-                console.error("Error loading favorites:", error);
-            }
-        };
-
         loadMovies();
     }, [user, searchTerm, selectedGenre, sortOrder, showOnlyFavorites]);
 
