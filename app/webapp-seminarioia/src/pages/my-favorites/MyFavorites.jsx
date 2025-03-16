@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import MOVIES from './../../data/movies.json'
 import LINKS from './../../data/links.json'
+import MoviesCover from './../../data/urls/MoviesCovers.json'
 import MovieCard from "../../components/MovieCard";
 import FavoriteService from "../../service/favoriteService";
 
@@ -81,11 +82,14 @@ const MyFavorites = () => {
                     const movieIdNum = parseInt(movie.movieId);
                     const link = linksData.find(link => parseInt(link.movieId) === movieIdNum);
 
+                    // Obtner el cover
+                    var cover = MoviesCover.find(c => c.movieId === movie?.movieId)
+
                     return {
                         ...movie,
                         imdbId: link ? link.imdbId : '',
                         tmdbId: link ? link.tmdbId : '',
-                        posterUrl: movie?.posterUrl ?? `https://placehold.co/300x450/121218/00f0ff?text=${encodeURIComponent(movie.title.split(' (')[0])}`
+                        posterUrl: cover?.cover ?? `https://placehold.co/300x450/121218/00f0ff?text=${encodeURIComponent(movie.title.split(' (')[0])}`
                     };
                 });
 

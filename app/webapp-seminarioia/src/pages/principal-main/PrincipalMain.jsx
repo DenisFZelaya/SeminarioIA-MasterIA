@@ -75,10 +75,6 @@ export default function PrincipalMain() {
                 <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600 mb-4">
                   Bienvenido, {user.given_name}
                 </h2>
-                <p className="text-cyan-300/80 max-w-3xl">
-                  Recomendaciones. {activeSection}
-                </p>
-
               </div>
             </div>
 

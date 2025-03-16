@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import FavoriteService from "../../service/favoriteService";
 import { useAuth0 } from "@auth0/auth0-react";
 import MOVIES_LINKS from "./../../data/links.json";
+import MoviesCover from "./../../data/urls/MoviesCovers.json";
 import CardRecomendationMovie from "./components/CardRecomendationMovie";
 import CardFavoriteMovie from "./components/CardFavoriteMovie";
 
@@ -32,6 +33,7 @@ export default function Recomentations() {
             setRecomendations(
               recommendations?.recommendations.map((movie) => ({
                 ...movie,
+                cover: MoviesCover.find((c) => c.title === movie?.title)?.cover,
                 link:
                   MOVIES_LINKS.find((c) => c.movieId === movie.movieId) || null, // Tomar solo el primer enlace encontrado
               }))
@@ -99,7 +101,23 @@ export default function Recomentations() {
   // Función para obtener favoritos
   const fetchFavorites = async () => {
     FavoriteService.getFavorites(user.sub).then((result) => {
-      setFavorites(result);
+      console.log("result: ", result.favorites);
+      var resultSend = result.favorites.map((movie) => {
+        // Obtner el cover
+        var cover = MoviesCover.find((c) => c.movieId === movie?.movieId);
+
+        return {
+          ...movie,
+          cover: cover?.cover,
+        };
+      });
+
+      var response = {};
+      response.favorites = resultSend;
+
+      console.log("response: ", response);
+
+      setFavorites(response);
     });
   };
 
@@ -107,7 +125,7 @@ export default function Recomentations() {
   React.useEffect(() => {
     fetchFavorites();
   }, []);
-  
+
   return (
     <div className="flex w-full flex-col min-h-screen bg-gray-900">
       {/* Contenedor principal */}
@@ -163,7 +181,7 @@ export default function Recomentations() {
                     Actualizando...
                   </span>
                 ) : (
-                  "ACTUALIZAR FAVORITOS"
+                  "Obtener recomendaciones"
                 )}
               </button>
             </div>
@@ -176,10 +194,10 @@ export default function Recomentations() {
             )}
 
             {/* Grid de favoritos */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
               {Array.isArray(favorites?.favorites) &&
                 favorites?.favorites?.map((movie) => (
-                  <CardFavoriteMovie movie={movie} />
+                  <CardFavoriteMovie movie={movie} key={movie?.movieId} />
                 ))}
             </div>
 
@@ -203,7 +221,7 @@ export default function Recomentations() {
             </div>
 
             {/* Grid de recomendaciones */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
               {Array.isArray(recomendations) &&
                 recomendations?.map((movie) => (
                   <CardRecomendationMovie movie={movie} />

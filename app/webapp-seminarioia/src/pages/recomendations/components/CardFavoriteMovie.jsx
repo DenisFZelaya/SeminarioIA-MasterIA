@@ -20,16 +20,19 @@ export default function CardFavoriteMovie({ movie }) {
           {/* Imagen de la película */}
           <div className="relative aspect-[2/3] bg-gray-900">
             <img
-              src={`https://placehold.co/300x450/121218/00f0ff?text=${encodeURIComponent(
-                movie.title.split(" (")[0]
-              )}`}
+              src={`${
+                movie?.cover ??
+                `https://placehold.co/300x450/121218/00f0ff?text=${encodeURIComponent(
+                  movie.title.split(" (")[0]
+                )}`
+              }`}
               alt={movie.title}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-60"></div>
           </div>
           <div className="p-4">
-            <h3 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 mb-2">
+            <h3 className="text-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 mb-2">
               {movie.title}
             </h3>
             <div className="flex flex-wrap gap-1 mb-2">
