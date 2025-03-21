@@ -54,6 +54,24 @@ services:
     volumes:
       - ./api:/app
 
+# New React frontend service
+  react_frontend:
+    container_name: 'react_frontend'
+    build:
+      context: ./app/webapp-seminarioia
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"  # Cambiado a 5173 para Vite
+    volumes:
+      - ./app/webapp-seminarioia:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    depends_on:
+      - movies_api
+    networks:
+      - knn_service_net
+
 networks:
   knn_service_net:
     driver: bridge
