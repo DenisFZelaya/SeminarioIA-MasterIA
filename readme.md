@@ -1,84 +1,71 @@
-Proyecto: Sistema de Recomendación Basado en IA
+# 📌 SeminarioIA - MasterIA
 
-Este proyecto implementa un sistema de recomendación utilizando Flask como backend, PostgreSQL como base de datos y un frontend en React con Vite.
+Este proyecto implementa un sistema basado en Flask, PostgreSQL y React. La infraestructura está definida mediante `docker-compose` para facilitar el despliegue.
 
-📌 Requisitos Previos
+## 🚀 Levantar el Proyecto
 
-Asegúrate de tener instalados los siguientes programas antes de iniciar el proyecto:
+Asegúrate de tener instalado **Docker** y **Docker Compose** en tu máquina.
 
-Docker
+1. Clona este repositorio:
 
-Docker Compose
+   ```sh
+   git clone https://github.com/DenisFZelaya/SeminarioIA-MasterIA.git
+   cd SeminarioIA-MasterIA
+   ```
 
-🚀 Instalación y Ejecución
+2. Construye y levanta los contenedores:
 
-1️⃣ Clonar el Repositorio
+   ```sh
+   docker-compose up --build
+   ```
 
-  git clone https://github.com/DenisFZelaya/SeminarioIA-MasterIA.git
-  cd SeminarioIA-MasterIA
+3. Accede a los servicios:
 
-2️⃣ Levantar los Contenedores con Docker Compose
+   - **API Flask**: [http://localhost:5000](http://localhost:5000)
+   - **Base de datos PostgreSQL**:
+     - Host: `localhost`
+     - Puerto: `5432`
+     - Usuario: `dfz`
+     - Base de datos: `db_movies`
+   - **PgAdmin**: [http://localhost:8081](http://localhost:8081)
+     - Usuario: `user-name@domain-name.com`
+     - Contraseña: `strong-password`
+   - **React Frontend**: [http://localhost:5173](http://localhost:5173)
 
-Ejecuta el siguiente comando en la raíz del proyecto:
+## 🛠 Desarrollo
 
-  docker-compose up --build -d
+Si realizas cambios en el código fuente y deseas reconstruir los servicios:
 
-Esto construirá las imágenes necesarias y levantará los servicios en segundo plano.
+```sh
+docker-compose up --build --force-recreate
+```
 
-3️⃣ Servicios Disponibles
+Para detener los contenedores sin eliminar datos:
 
-Una vez que los contenedores estén corriendo, los servicios estarán disponibles en:
+```sh
+docker-compose down
+```
 
-Backend (Flask API): http://localhost:5000
+Si deseas eliminar los volúmenes y datos persistentes:
 
-Base de Datos (PostgreSQL): localhost:5432 (usuario: dfz, contraseña: strong-password, base de datos: db_movies)
+```sh
+docker-compose down -v
+```
 
-pgAdmin: http://localhost:8081 (usuario: user-name@domain-name.com, contraseña: strong-password)
+## 📄 Estructura del Proyecto
 
-Frontend (React con Vite): http://localhost:5173
+```
+/SeminarioIA-MasterIA
+│── /api                  # Backend en Flask
+│── /app/webapp-seminarioia  # Frontend en React (Vite)
+│── docker-compose.yml     # Configuración de contenedores
+│── README.md              # Documentación del proyecto
+```
 
-4️⃣ Verificar los Contenedores en Ejecución
+## 📝 Notas
 
-Para ver los contenedores activos, usa:
+- Asegúrate de cambiar las credenciales en `docker-compose.yml` antes de producción.
+- Puedes modificar las variables de entorno en `react_frontend` y `movies_api` según tus necesidades.
 
-  docker ps
+¡Listo! Ahora puedes desarrollar y probar el sistema. 🚀
 
-5️⃣ Detener el Proyecto
-
-Si necesitas detener los contenedores, ejecuta:
-
-  docker-compose down
-
-🛠 Desarrollo y Depuración
-
-Acceder a un Contenedor
-
-Si necesitas ingresar a un contenedor en ejecución, usa:
-
-  docker exec -it <nombre_del_contenedor> sh
-
-Ejemplo para la API:
-
-  docker exec -it movies_api sh
-
-Ver Logs de los Contenedores
-
-Para inspeccionar los logs de un servicio:
-
-  docker-compose logs -f <nombre_del_servicio>
-
-Ejemplo para el frontend:
-
-  docker-compose logs -f react_frontend
-
-🎯 Notas
-
-Asegúrate de que los puertos 5000, 5432, 8081 y 5173 no estén ocupados antes de levantar los contenedores.
-
-Puedes modificar las variables de entorno en docker-compose.yml según tus necesidades.
-
-Para reconstruir imágenes después de cambios en el código, usa:
-
-  docker-compose up --build -d
-
-📌 Autor: Denis Zelaya📌 Repositorio: GitHub
