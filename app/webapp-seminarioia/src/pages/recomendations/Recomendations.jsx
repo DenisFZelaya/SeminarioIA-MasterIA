@@ -77,7 +77,7 @@ export default function Recomentations() {
       };
 
       // Realizar la petición
-      fetch("http://127.0.0.1:5000/recommendations", requestOptions)
+      fetch("http://3.18.68.194:5000/recommendations", requestOptions)
         .then((response) => {
           // Verificar si la respuesta es exitosa
           if (!response.ok) {

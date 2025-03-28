@@ -21,16 +21,16 @@ Asegúrate de tener instalado **Docker** y **Docker Compose** en tu máquina.
 
 3. Accede a los servicios:
 
-   - **API Flask**: [http://localhost:5000](http://localhost:5000)
+   - **API Flask**: [http://3.18.68.194:5000](http://3.18.68.194:5000)
    - **Base de datos PostgreSQL**:
-     - Host: `localhost`
+     - Host: `3.18.68.194`
      - Puerto: `5432`
      - Usuario: `dfz`
      - Base de datos: `db_movies`
-   - **PgAdmin**: [http://localhost:8081](http://localhost:8081)
+   - **PgAdmin**: [http://3.18.68.194:8081](http://3.18.68.194:8081)
      - Usuario: `user-name@domain-name.com`
      - Contraseña: `strong-password`
-   - **React Frontend**: [http://localhost:5173](http://localhost:5173)
+   - **React Frontend**: [http://3.18.68.194:5173](http://3.18.68.194:5173)
 
 ## 🛠 Desarrollo
 

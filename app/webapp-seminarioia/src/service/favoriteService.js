@@ -6,7 +6,7 @@
 const FavoriteService = (() => {
     // Configuración por defecto
     let config = {
-      baseUrl: 'http://localhost:5000/api',
+      baseUrl: 'http://3.18.68.194:5000/api',
       userId: null
     };
   

@@ -202,7 +202,7 @@ const MyFavorites = () => {
 
     async function saveFavoriteMovie(movieData, userId) {
         // URL del endpoint para guardar favoritos
-        const url = `http://localhost:5000/api/favorites`;
+        const url = `http://3.18.68.194:5000/api/favorites`;
 
         // Verificar que los datos obligatorios estén presentes
         if (!movieData.movieId) {

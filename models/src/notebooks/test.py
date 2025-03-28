@@ -3,7 +3,7 @@ import requests
 import json
 
 # URL base de la API (ajusta según sea necesario)
-BASE_URL = "http://localhost:5000"
+BASE_URL = "http://3.18.68.194:5000"
 
 def test_search():
     """Prueba el endpoint de búsqueda de películas"""

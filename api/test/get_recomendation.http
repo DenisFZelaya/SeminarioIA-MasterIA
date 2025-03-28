@@ -1,5 +1,5 @@
 ### Petición POST para obtener recomendaciones de películas
-POST http://127.0.0.1:5000/recommendations
+POST http://3.18.68.194:5000/recommendations
 Content-Type: application/json
 
 {
