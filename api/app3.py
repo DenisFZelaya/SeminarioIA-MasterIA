@@ -10,7 +10,7 @@ import os
 import logging
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": ["https://proyecto-d1.site"]}})
 
 # Configuración de logging
 logging.basicConfig(level=logging.INFO)
