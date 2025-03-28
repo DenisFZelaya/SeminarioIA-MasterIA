@@ -27,7 +27,7 @@ export default function PrincipalMain() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <h1 className="text-xl md:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600">
-                UNIR IA LABS
+                Equipo D1
               </h1>
             </div>
 

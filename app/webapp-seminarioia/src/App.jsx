@@ -13,7 +13,7 @@ const App = () => {
 
 
   if (isLoading) {
-    return <div>Cargando...</div>;
+    return <div></div>;
   }
 
   return (

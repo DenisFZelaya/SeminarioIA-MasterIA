@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (!isAuthenticated) {
     loginWithRedirect();
-    return <div>Cargando...</div>;
+    return <div></div>;
   }
 
   return children;
