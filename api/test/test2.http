@@ -1,0 +1,99 @@
+### Variables globales
+@baseUrl = http://localhost:5000/api
+@userId = google-oauth2|105035119305512501405
+
+### Obtener favoritos de un usuario
+GET {{baseUrl}}/favorites/{{userId}}
+Accept: application/json
+
+### Alternar película como favorito (agregar o quitar) con todos los campos
+# Si la película ya está en favoritos, la quitará
+# Si no está en favoritos, la agregará
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "movieId": 550,
+    "genres": "Drama|Thriller",
+    "imdbId": 137523,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+    "title": "Fight Club (1999)",
+    "tmdbId": 550
+}
+
+### Agregar otra película como favorita con todos los campos
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "movieId": 299536,
+    "genres": "Action|Adventure|Science Fiction",
+    "imdbId": 4154756,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+    "title": "Avengers: Infinity War (2018)",
+    "tmdbId": 299536
+}
+
+### Agregar película con datos parciales (solo campos obligatorios)
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "movieId": 24428
+}
+
+### Agregar película con datos completos
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "movieId": 117867,
+    "genres": "Action|Drama|Thriller|War",
+    "imdbId": 2614684,
+    "posterUrl": "https://placehold.co/300x450/121218/00f0ff?text='71",
+    "title": "'71 (2014)",
+    "tmdbId": 252178
+}
+
+### Obtener favoritos de otro usuario
+GET {{baseUrl}}/favorites/auth0|123456789
+Accept: application/json
+
+### Probar con datos inválidos (falta movieId)
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}"
+}
+
+### Probar con datos inválidos (falta userId)
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "movieId": 550,
+    "genres": "Drama|Thriller",
+    "imdbId": 137523,
+    "posterUrl": "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+    "title": "Fight Club (1999)",
+    "tmdbId": 550
+}
+
+### Probar con valores nulos en campos opcionales
+POST {{baseUrl}}/favorites
+Content-Type: application/json
+
+{
+    "userId": "{{userId}}",
+    "movieId": 11,
+    "genres": null,
+    "imdbId": null,
+    "posterUrl": null,
+    "title": null,
+    "tmdbId": null
+}

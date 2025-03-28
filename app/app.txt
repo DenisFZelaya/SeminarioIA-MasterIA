@@ -1,0 +1,4 @@
+movieId,imdbId,tmdbId
+movieId,title,genres
+userId,movieId,rating,timestamp
+userId,movieId,tag,timestamp

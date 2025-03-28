@@ -1,1 +1,0 @@
-# utils.py: it will contain all our helper functions that we will need during the project
