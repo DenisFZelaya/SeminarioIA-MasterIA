@@ -62,10 +62,4 @@ docker-compose down -v
 │── README.md              # Documentación del proyecto
 ```
 
-## 📝 Notas
-
-- Asegúrate de cambiar las credenciales en `docker-compose.yml` antes de producción.
-- Puedes modificar las variables de entorno en `react_frontend` y `movies_api` según tus necesidades.
-
-¡Listo! Ahora puedes desarrollar y probar el sistema. 🚀
 
