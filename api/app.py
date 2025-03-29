@@ -9,7 +9,11 @@ import os
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": ["https://proyecto-d1.site"]}})
-
+@app.before_request
+def enforce_https():
+    if not request.is_secure and request.headers.get('X-Forwarded-Proto') != 'https':
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
 # Variables globales para el modelo y datos
 knn_model = None
 movies_df = None
