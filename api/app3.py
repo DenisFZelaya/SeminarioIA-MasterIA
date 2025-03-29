@@ -10,7 +10,12 @@ import os
 import logging
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": ["https://proyecto-d1.site"]}})
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["https://proyecto-d1.site"],
+        "supports_credentials": True
+    }
+})
 @app.before_request
 def enforce_https():
     if request.headers.get('X-Forwarded-Proto') == 'http':
