@@ -1,5 +1,5 @@
 ### Petición POST para obtener recomendaciones de películas
 
 
-GET http://3.18.68.194:5000/search?q=The+Notebook
+GET https://proyecto-d1.site/search?q=The+Notebook
 Content-Type: application/json

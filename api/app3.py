@@ -164,7 +164,7 @@ def home():
         "endpoints": {
             "/api/favorites/<user_id>": "GET - Obtener películas favoritas de un usuario",
             "/api/favorites": "POST - Agregar o quitar una película de favoritos",
-            "/recommendations": "POST - Obtener recomendaciones basadas en múltiples películas",
+            "/api/recommendations": "POST - Obtener recomendaciones basadas en múltiples películas",
             "/search": "GET - Buscar películas por nombre PRUEBA"
         }
     })
@@ -338,7 +338,7 @@ def get_recommendations():
         return jsonify({"error": str(e)}), 500
 
 # Endpoint para buscar películas (útil para autocompletar en el frontend)
-@app.route('/search', methods=['GET'])
+@app.route('/api/search', methods=['GET'])
 def search_movies():
     try:
         if not model_loaded:

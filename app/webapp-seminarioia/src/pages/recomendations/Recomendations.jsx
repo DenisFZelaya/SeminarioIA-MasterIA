@@ -77,7 +77,7 @@ export default function Recomentations() {
       };
 
       // Realizar la petición
-      fetch("http://3.18.68.194:5000/recommendations", requestOptions)
+      fetch("https://proyecto-d1.site/api/recommendations", requestOptions)
         .then((response) => {
           // Verificar si la respuesta es exitosa
           if (!response.ok) {

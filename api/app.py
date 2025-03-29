@@ -121,7 +121,7 @@ def get_recommendations_from_multiple_movies(movie_names_list, n_recommendations
     }
 
 # Endpoint para obtener recomendaciones basadas en múltiples películas
-@app.route('/recommendations', methods=['POST'])
+@app.route('/api/recommendations', methods=['POST'])
 def get_recommendations():
     try:
         # Obtener datos del request
@@ -174,7 +174,7 @@ def home():
         "status": "online",
         "message": "API de recomendación de películas",
         "endpoints": {
-            "/recommendations": "POST - Obtener recomendaciones basadas en múltiples películas",
+            "/api/recommendations": "POST - Obtener recomendaciones basadas en múltiples películas",
             "/search": "GET - Buscar películas por nombre"
         }
     })

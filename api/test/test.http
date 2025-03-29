@@ -1,6 +1,6 @@
 
 ### Variables globales
-@baseUrl = http://3.18.68.194:5000/api
+@baseUrl = https://proyecto-d1.site/api
 @userId = auth0|123456789
 
 ### Obtener favoritos de un usuario

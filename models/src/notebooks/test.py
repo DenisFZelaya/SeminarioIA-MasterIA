@@ -3,7 +3,7 @@ import requests
 import json
 
 # URL base de la API (ajusta según sea necesario)
-BASE_URL = "http://3.18.68.194:5000"
+BASE_URL = "https://proyecto-d1.site"
 
 def test_search():
     """Prueba el endpoint de búsqueda de películas"""
@@ -33,7 +33,7 @@ def test_recommendations():
     }
     
     # Hacer la solicitud POST
-    response = requests.post(f"{BASE_URL}/recommendations", json=data)
+    response = requests.post(f"{BASE_URL}/api/recommendations", json=data)
     
     print("--- TEST DE RECOMENDACIONES ---")
     print(f"Películas de entrada: {data['movies']}")

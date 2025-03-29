@@ -21,7 +21,7 @@ Asegúrate de tener instalado **Docker** y **Docker Compose** en tu máquina.
 
 3. Accede a los servicios:
 
-   - **API Flask**: [http://3.18.68.194:5000](http://3.18.68.194:5000)
+   - **API Flask**: [https://proyecto-d1.site](https://proyecto-d1.site)
    - **Base de datos PostgreSQL**:
      - Host: `3.18.68.194`
      - Puerto: `5432`

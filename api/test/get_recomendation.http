@@ -1,5 +1,5 @@
 ### Petición POST para obtener recomendaciones de películas
-POST http://3.18.68.194:5000/recommendations
+POST https://proyecto-d1.site/api/recommendations
 Content-Type: application/json
 
 {

@@ -40,7 +40,7 @@ def home():
         "status": "online",
         "message": "API de recomendación de películas UNIR D1",
         "endpoints": {
-            "/recommendations": "POST - Obtener recomendaciones basadas en múltiples películas",
+            "/api/recommendations": "POST - Obtener recomendaciones basadas en múltiples películas",
             "/search": "GET - Buscar películas por nombre"
         }
     })
