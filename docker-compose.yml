@@ -8,7 +8,7 @@ services:
     restart: always
     image: postgres:14-alpine
     ports:
-      - 5432:5432
+      - "127.0.0.1:5432:5432"
     environment:
       - POSTGRES_PASSWORD=strong-password
       - POSTGRES_USER=dfz
@@ -24,7 +24,7 @@ services:
     container_name: 'pgadmin_movies'
     restart: always
     ports: 
-      - 8081:80
+      - - "127.0.0.1:8081:80" 
     environment:
       PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
       PGADMIN_DEFAULT_PASSWORD: strong-password
@@ -49,6 +49,8 @@ services:
       - DB_USER=dfz
       - DB_PASSWORD=strong-password
       - DB_NAME=db_movies
+      - FLASK_ENV=production
+      - FLASK_DEBUG=0
     networks:
       - knn_service_net
     volumes:
@@ -61,7 +63,7 @@ services:
       context: ./app/webapp-seminarioia
       dockerfile: Dockerfile
     ports:
-      - "5173:5173"  # Cambiado a 5173 para Vite
+      - "127.0.0.1:5173:5173"  # Cambiado a 5173 para Vite
     volumes:
       - ./app/webapp-seminarioia:/app
       - /app/node_modules
