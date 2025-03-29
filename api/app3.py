@@ -156,7 +156,7 @@ def get_recommendations_from_multiple_movies(movie_names_list, n_recommendations
     }
 
 # Endpoint simple para verificar que la API está funcionando
-@app.route('/root', methods=['GET'])
+@app.route('/api/root', methods=['GET'])
 def home():
     return jsonify({
         "status": "online",
