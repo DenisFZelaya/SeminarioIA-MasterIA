@@ -11,11 +11,11 @@ import logging
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": ["https://proyecto-d1.site"]}})
-# @app.before_request
-# def enforce_https():
-#     if not request.is_secure and request.headers.get('X-Forwarded-Proto') != 'https':
-#         url = request.url.replace('http://', 'https://', 1)
-#         return redirect(url, code=301)
+@app.before_request
+def enforce_https():
+    if request.headers.get('X-Forwarded-Proto') == 'http':
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
 # Configuración de logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
