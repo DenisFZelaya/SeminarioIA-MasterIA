@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserProfileDropdown from "../../components/UserProfileDropdown";
-import Recomendations from "../recomendations/recomendations";
+import Recomendations from "../recomendations/Recomendations";
 import MyFavorites from "../my-favorites/MyFavorites";
 import Team from "../team/Team";
 import Implementations from "../Implementations/Implementations";

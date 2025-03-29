@@ -1,5 +1,6 @@
 # app.py - API Flask para recomendaciones de películas
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import numpy as np
 from scipy.sparse import csr_matrix
@@ -7,6 +8,7 @@ import joblib
 import os
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": ["https://proyecto-d1.site"]}})
 
 # Variables globales para el modelo y datos
 knn_model = None
