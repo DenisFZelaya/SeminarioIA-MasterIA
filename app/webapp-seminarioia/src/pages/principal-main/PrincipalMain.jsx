@@ -14,7 +14,10 @@ export default function PrincipalMain() {
   const [activeSection, setActiveSection] = useState(0);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-cyan-300" style={{ width: "100vw", overflowX: "hidden" }}>
+    <div
+      className="min-h-screen bg-gray-900 text-cyan-300"
+      style={{ width: "100vw", overflowX: "hidden" }}
+    >
       {/* Header con perfil de usuario */}
       <header className="relative bg-gray-800 border-b border-cyan-500/30">
         {/* Efectos de fondo cyberpunk */}
@@ -32,7 +35,10 @@ export default function PrincipalMain() {
             </div>
 
             {/* Navegación de escritorio */}
-            <DesktopNav setActiveSection={setActiveSection} activeSection={activeSection} />
+            <DesktopNav
+              setActiveSection={setActiveSection}
+              activeSection={activeSection}
+            />
 
             {/* Botón de menú móvil */}
             <div className="md:hidden">
@@ -43,12 +49,36 @@ export default function PrincipalMain() {
               >
                 <span className="sr-only">Abrir menú principal</span>
                 {mobileMenuOpen ? (
-                  <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 ) : (
-                  <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
                   </svg>
                 )}
               </button>
@@ -59,34 +89,38 @@ export default function PrincipalMain() {
         </div>
 
         {/* Menú móvil */}
-        <MovileNav mobileMenuOpen={mobileMenuOpen} setActiveSection={setActiveSection} user={user} />
+        <MovileNav
+          mobileMenuOpen={mobileMenuOpen}
+          setActiveSection={setActiveSection}
+          user={user}
+          activeSection={activeSection}
+        />
       </header>
 
       {/* Contenido principal */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Sección de bienvenida */}
-        <section className="mb-12">
-          <div className="bg-gray-800 rounded-lg shadow-xl overflow-hidden border border-cyan-500/30">
-            <div className="relative px-6 py-8 md:p-10">
-              {/* Efectos de fondo */}
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl"></div>
+        {activeSection === 0 && (
+          <section className="mb-12">
+            <div className="bg-gray-800 rounded-lg shadow-xl overflow-hidden border border-cyan-500/30">
+              <div className="relative px-6 py-8 md:p-10">
+                {/* Efectos de fondo */}
+                <div className="absolute -top-24 -right-24 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl"></div>
 
-              <div className="relative">
-                <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600 mb-4">
-                  Bienvenido, {user.given_name}
-                </h2>
+                <div className="relative">
+                  <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600 mb-4">
+                    Bienvenido, {user.given_name}
+                  </h2>
+                </div>
               </div>
             </div>
-
-
-          </div>
-        </section>
+          </section>
+        )}
 
         {activeSection === 0 && <Recomendations />}
         {activeSection === 1 && <MyFavorites />}
         {activeSection === 2 && <Team />}
         {activeSection === 3 && <Implementations />}
-
       </main>
 
       {/* Footer */}
