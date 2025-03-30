@@ -32,7 +32,7 @@ const UserProfileDropdown = () => {
   
   return (
     <div className="profile-dropdown-container relative">
-      <div className="flex items-center space-x-4 cursor-pointer" onClick={toggleDropdown}>
+      <div className="flex items-center space-x-4 cursor-pointer md:flex hidden" onClick={toggleDropdown}>
         <div className="flex flex-col items-end">
           <span className="text-sm font-medium text-cyan-100">{user.name}</span>
           <span className="text-xs text-cyan-300/70">{user.email}</span>

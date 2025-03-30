@@ -276,7 +276,7 @@ const MyFavorites = () => {
             {/* Controles de filtrado y búsqueda */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
                 <div className="bg-gray-800 rounded-lg border border-cyan-500/30 p-4 md:p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {/* Búsqueda */}
                         <div>
                             <label htmlFor="search" className="block text-sm font-medium text-cyan-300 mb-1">Buscar película</label>
@@ -401,7 +401,7 @@ const MyFavorites = () => {
                         <p className="text-cyan-300/70">No se encontraron películas que coincidan con tu búsqueda.</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {displayedMovies.map(movie => (
                             <MovieCard
                                 key={movie.movieId}
