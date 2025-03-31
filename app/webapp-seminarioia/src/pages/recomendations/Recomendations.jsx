@@ -194,7 +194,10 @@ export default function Recomentations() {
             )}
 
             {/* Grid de favoritos */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            <div
+              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8 "
+              style={{ display: "flex", overflowX: "auto" }}
+            >
               {Array.isArray(favorites?.favorites) &&
                 favorites?.favorites?.map((movie) => (
                   <CardFavoriteMovie movie={movie} key={movie?.movieId} />
@@ -221,7 +224,7 @@ export default function Recomentations() {
             </div>
 
             {/* Grid de recomendaciones */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
               {Array.isArray(recomendations) &&
                 recomendations?.map((movie) => (
                   <CardRecomendationMovie movie={movie} />
